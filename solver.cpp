@@ -5,26 +5,18 @@
 #include "solver.hpp"
 #include <string>
 #include <iostream>
-#include <complex>
 
 using namespace std;
-using solver::solve, solver::RealVariable, solver::ComplexVariable;
+using namespace solver;
 
 
+RealVariable& solve(const RealVariable& a){
 
-double solve(const istream& input){
-    double d;
-    return d;
 }
 
-
-
-
-std::complex solve(const istream& input){
-    complex c;
-    return c;
+ComplexVariable& solve(const ComplexVariable& a){
+ 
 }
-
 
 
 
