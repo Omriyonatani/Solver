@@ -9,43 +9,135 @@
 using namespace std;
 using namespace solver;
 
-
-RealVariable& solve(const RealVariable& a){
-
+const RealVariable& operator- (const RealVariable& c1, const RealVariable& c2){
+    return c1;
+}
+const RealVariable& operator- (const double c1, const RealVariable& c2){
+    return c2;
+}
+const RealVariable& operator- (const RealVariable& c1, double c2){
+    return c1;
 }
 
-ComplexVariable& solve(const ComplexVariable& a){
- 
+const RealVariable& operator* (const RealVariable& c1, const RealVariable& c2){
+    return c1;
+}
+const RealVariable& operator* (const double c1, const RealVariable& c2){
+    return c2;
+}
+const RealVariable& operator* (const RealVariable& c1, const double c2){
+    return c1;
+}
+
+const RealVariable& operator+ (const RealVariable& c1, const RealVariable& c2){
+    return c1;
+}
+const RealVariable& operator+ (const double c1, const RealVariable& c2){
+    return c2;
+}
+const RealVariable& operator+ (const RealVariable& c1, const double c2){
+    return c1;
+}
+
+const RealVariable& operator==(const RealVariable& c1, const RealVariable& c2){
+    return c1;
+}
+const RealVariable& operator==(const double c1, const RealVariable& c2){
+    return c2;
+}
+const RealVariable& operator==(const RealVariable& c1, const double c2){
+    return c1;
+}
+
+const RealVariable& operator/ (const RealVariable& c1, const RealVariable& c2){
+    return c1;
+}
+const RealVariable& operator/ (const double c1, const RealVariable& c2){
+    return c2;
+}
+const RealVariable& operator/ (const RealVariable& c1, const double c2){
+    return c1;
+}
+
+const RealVariable& operator^ (const RealVariable& c1, const double c2){
+    return c1;
+}
+
+
+ostream& operator<< (ostream& os, const RealVariable& c1){
+    return os;
 }
 
 
 
 
-istream& getAndCheckNextCharIs(istream& input, char expectedChar) {
-    char actualChar;
-    input >> actualChar;
-    if (!input) return input;   // no input
-    if (actualChar!=expectedChar) {
-        input.setstate(ios::failbit);
-    }
-    return input;
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+const ComplexVariable& operator- (const ComplexVariable& c1, const ComplexVariable& c2){
+    return c1;
+}
+const ComplexVariable& operator- (const double c1, const ComplexVariable& c2){
+    return c2;
+}
+const ComplexVariable& operator- (const ComplexVariable& c1, double c2){
+    return c1;
 }
 
-istream& RealVariable::operator>> (istream& input){
-    double new_re;
-
-    // remember place for rewinding
-    ios::pos_type startPosition = input.tellg();
-
-    if ((!(input >> new_re)) || (!getAndCheckNextCharIs(input,'+')) || (!getAndCheckNextCharIs(input,'-'))){
-
-        // rewind on error
-        auto errorState = input.rdstate(); // remember error state
-        input.clear(); // clear error so seekg will work
-        input.seekg(startPosition); // rewind
-        input.clear(errorState); // set back the error flag
-    } else {
-        c._re = new_re;
-    }
-    return input;
+const ComplexVariable& operator* (const ComplexVariable& c1, const ComplexVariable& c2){
+    return c1;
 }
+const ComplexVariable& operator* (const double c1, const ComplexVariable& c2){
+    return c2;
+}
+const ComplexVariable& operator* (const ComplexVariable& c1, const double c2){
+    return c1;
+}
+
+const ComplexVariable& operator+ (const ComplexVariable& c1, const ComplexVariable& c2){
+    return c1;
+}
+const ComplexVariable& operator+ (const double c1, const ComplexVariable& c2){
+    return c2;
+}
+const ComplexVariable& operator+ (const ComplexVariable& c1, const double c2){
+    return c1;
+}
+
+const ComplexVariable& operator==(const ComplexVariable& c1, const ComplexVariable& c2){
+    return c1;
+}
+const ComplexVariable& operator==(const double c1, const ComplexVariable& c2){
+    return c2;
+}
+const ComplexVariable& operator==(const ComplexVariable& c1, const double c2){
+    return c1;
+}
+
+const ComplexVariable& operator/ (const ComplexVariable& c1, const ComplexVariable& c2){
+    return c1;
+}
+const ComplexVariable& operator/ (const double c1, const ComplexVariable& c2){
+    return c2;
+}
+const ComplexVariable& operator/ (const ComplexVariable& c1, const double c2){
+    return c1;
+}
+
+const ComplexVariable& operator^ (const ComplexVariable& c1, const double c2){
+    return c1;
+}
+
+
+ostream& operator<< (ostream& os, const ComplexVariable& c1){
+    return os;
+}
+
+double solve(const RealVariable& a){
+    return 0;
+}
+
+complex<double> solve(const ComplexVariable& a){
+    return 0;
+}
+
