@@ -58,7 +58,7 @@ namespace solver{
 
         friend const ComplexVariable& operator- (const ComplexVariable& c1, const ComplexVariable& c2);
         friend const ComplexVariable& operator- (const double c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator- (const ComplexVariable& c1, double c2);
+        friend const ComplexVariable& operator- (const ComplexVariable& c1, const double c2);
         friend const ComplexVariable& operator- (const complex<double>& c1, const ComplexVariable& c2);
         friend const ComplexVariable& operator- (const ComplexVariable& c1, const complex<double>& c2);
 
