@@ -1,6 +1,5 @@
 #include "doctest.h"
 #include "solver.hpp"
-#include <string>
 using namespace std;
 using solver::solve, solver::RealVariable, solver::ComplexVariable;
 
@@ -122,4 +121,48 @@ TEST_CASE("High Power ^ Exception"){
     CHECK_THROWS(solve((y^3/2) == 3));
     CHECK_THROWS(solve((y^5) == 55));
 
+}
+
+//~~~~~~~~Ron's Tests~~~~~~~~~~
+
+
+TEST_CASE("General RealVariable"){
+    RealVariable x;
+    CHECK(solve(x*2+1+1== 10)==4);
+    CHECK(solve(1+x*2+1== 10-2)==3);
+    CHECK(solve(1+1== 10-4-x*2)==2);
+    CHECK(solve(1+1== -1*x*2+10-4)==2);
+    CHECK(solve(1+1+x*2== 10-x*2-4)==2);
+    CHECK(solve(-4+1+1+x*2== 10-x*2)==2);
+    CHECK(solve(x==2+2*2)==6);
+    CHECK(solve(2+(x^2)*2==20)==6);
+    CHECK((solve((x^2)-3*x-10==0)==-2)||(solve((x^2)-3*x-10==0)==5));
+    CHECK((solve(-3*x-10== -1*(x^2))==-2)||(solve((x^2)-3*x-10== -1*(x^2))==5));
+    CHECK((solve((x^2) + 2*x + 4.0 == 20 + 6.0*x/2 - x)==4)||(solve((x^2) + 2*x + 4.0 == 20 + 6.0*x/2 - x)==-4));
+    CHECK(solve(x-1-1 == x*8+5)==-1);
+    CHECK((solve((x^2)+(x^2)+2*(x^2) == 64)==4)||(solve((x^2)+(x^2)+2*(x^2) == 64)==4));
+    CHECK((solve((x^2)-5*x+4)==1)||(solve((x^2)-5*x+4)==4));
+    CHECK((solve(0.5*(x^2)-3*x+4 == 0)==2)||(solve(0.5*(x^2)-3*x+4 == 0)==4));
+}
+
+TEST_CASE("General ComplexVariable"){
+    ComplexVariable x;
+    CHECK(solve(x==10)==complex<double> (10,0));
+    CHECK(solve(x==10i)==complex<double> (0,10));
+    CHECK(solve(x==10i+10.)==complex<double> (10,10));
+    CHECK(solve(x==10.+10i)==complex<double> (10,10));
+    CHECK((solve((x^2)==-144)==complex<double> (0,12))||(solve((x^2)==-144)==complex<double> (0,-12)));
+    CHECK((solve((x^2)*9==-144)==complex<double> (0,4))||(solve((x^2)*9==-144)==complex<double> (0,-4)));
+    CHECK((solve(0==-144-(x^2))==complex<double> (0,12))||(solve(0==-144-(x^2))==complex<double> (0,-12)));
+    CHECK(solve(x==0+0)==complex<double> (0,0));
+    CHECK(solve(x==1i*1i)==complex<double> (-1,0));
+    CHECK(solve(x==0.+0i)==complex<double> (0,0));
+    CHECK(solve(x==0.5+0.5i)==complex<double> (0.5,0.5));
+    CHECK(solve(x/2-x==0.5+0.5i)==complex<double> (1,1));
+    CHECK(solve(x/2+(x^2)==3*(x^2)/2-(x^2)+0.5+0.5i)==complex<double> (1,1));
+    CHECK(solve(x==0/2)==complex<double> (0,0));
+    CHECK(solve(x==0./10i)==complex<double> (0,0));
+    CHECK_THROWS(solve(x/2-x==-0.5*x+0.5i));
+    CHECK_THROWS(solve(x==0/0));
+    CHECK(solve(x+5i == 2*x+3i)==complex<double> (0,2));
 }
