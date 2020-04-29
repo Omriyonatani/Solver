@@ -95,6 +95,15 @@ const ComplexVariable& solver::operator-(const double c1, const ComplexVariable&
 const ComplexVariable& solver::operator-(const ComplexVariable& c1, double c2){
     return c1;
 }
+const ComplexVariable& solver::operator-(const complex<double>& c1, const ComplexVariable& c2){
+        return c2;
+}
+const ComplexVariable& solver::operator-(const ComplexVariable& c1, const complex<double>& c2){
+    return c1;
+}
+
+
+
 
 const ComplexVariable& solver::operator*(const ComplexVariable& c1, const ComplexVariable& c2){
     return c1;
@@ -105,6 +114,9 @@ const ComplexVariable& solver::operator*(const double c1, const ComplexVariable&
 const ComplexVariable& solver::operator*(const ComplexVariable& c1, const double c2){
     return c1;
 }
+
+
+
 
 const ComplexVariable& solver::operator+(const ComplexVariable& c1, const ComplexVariable& c2){
     return c1;
@@ -123,6 +135,8 @@ const ComplexVariable& solver::operator+(const ComplexVariable& c1, const comple
 }
 
 
+
+
 const ComplexVariable& solver::operator==(const ComplexVariable& c1, const ComplexVariable& c2){
     return c1;
 }
@@ -132,6 +146,15 @@ const ComplexVariable& solver::operator==(const double c1, const ComplexVariable
 const ComplexVariable& solver::operator==(const ComplexVariable& c1, const double c2){
     return c1;
 }
+
+const ComplexVariable& solver::operator==(const complex<double>& c1, const ComplexVariable& c2){
+    return c2;
+}
+const ComplexVariable& solver::operator==(const ComplexVariable& c1, const complex<double>& c2){
+    return c1;
+}
+
+
 
 const ComplexVariable& solver::operator/(const ComplexVariable& c1, const ComplexVariable& c2){
     return c1;

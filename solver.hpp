@@ -24,6 +24,7 @@ namespace solver{
         friend const RealVariable& operator-(const double c1, const RealVariable& c2);
         friend const RealVariable& operator-(const RealVariable& c1, const double c2);
 
+
         friend const RealVariable& operator*(const RealVariable& c1, const RealVariable& c2);
         friend const RealVariable& operator*(const double c1, const RealVariable& c2);
         friend const RealVariable& operator*(const RealVariable& c1, const double c2);
