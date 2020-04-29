@@ -16,89 +16,126 @@ namespace solver{
 
 
     class RealVariable{
+        double a,b,c;
     public:
-        double x;
-        RealVariable(){};
 
-        friend const RealVariable& operator-(const RealVariable& c1, const RealVariable& c2);
-        friend const RealVariable& operator-(const double c1, const RealVariable& c2);
-        friend const RealVariable& operator-(const RealVariable& c1, const double c2);
+        RealVariable():a(0),b(0),c(0){};
 
+        RealVariable(double a,double b,double c){
+            this->a=a;
+            this->b=b;
+            this->c=c;
+        }
 
-        friend const RealVariable& operator*(const RealVariable& c1, const RealVariable& c2);
-        friend const RealVariable& operator*(const double c1, const RealVariable& c2);
-        friend const RealVariable& operator*(const RealVariable& c1, const double c2);
+        double getA(){
+            return this->a;
+        }
 
-        friend const RealVariable& operator+(const RealVariable& c1, const RealVariable& c2);
-        friend const RealVariable& operator+(const double c1, const RealVariable& c2);
-        friend const RealVariable& operator+(const RealVariable& c1, const double c2);
-        friend const RealVariable& operator+(const RealVariable& c1, const complex<double>& c2);
-        friend const RealVariable& operator+(const complex<double>& c1, const RealVariable& c2);
+        double getB(){
+            return this->b;
+        }
 
-        friend const RealVariable& operator==(const RealVariable& c1, const RealVariable& c2);
-        friend const RealVariable& operator==(const double c1, const RealVariable& c2);
-        friend const RealVariable& operator==(const RealVariable& c1, const double c2);
+        double getC(){
+            return this->c;
+        }
 
-        friend const RealVariable& operator/(const RealVariable& c1, const RealVariable& c2);
-        friend const RealVariable& operator/(const double c1, const RealVariable& c2);
-        friend const RealVariable& operator/(const RealVariable& c1, const double c2);
-
-        friend const RealVariable& operator^(const RealVariable& c1, const double c2);
+        friend RealVariable& operator-(RealVariable& x,RealVariable& y);
+        friend RealVariable& operator-( double x,RealVariable& y);
+        friend RealVariable& operator-(RealVariable& x,  double y);
 
 
-        friend ostream& operator<<(ostream& os, const RealVariable& c1);
+        friend  RealVariable& operator*( RealVariable& x,  RealVariable& y);
+        friend  RealVariable& operator*( double x,  RealVariable& y);
+        friend  RealVariable& operator*( RealVariable& x,  double y);
+
+        friend  RealVariable& operator+( RealVariable& x,  RealVariable& y);
+        friend  RealVariable& operator+( double x,  RealVariable& y);
+        friend  RealVariable& operator+( RealVariable& x,  double y);
+
+
+        friend  RealVariable& operator==( RealVariable& x,  RealVariable& y);
+        friend  RealVariable& operator==( double x,  RealVariable& y);
+        friend  RealVariable& operator==( RealVariable& x,  double y);
+
+        friend  RealVariable& operator/( RealVariable& x,  RealVariable& y);
+        friend  RealVariable& operator/( double x,  RealVariable& y);
+        friend  RealVariable& operator/( RealVariable& x,  double y);
+
+        friend  RealVariable& operator^( RealVariable& x,  double y);
+
+
+        friend ostream& operator<<(ostream& os,  RealVariable& x);
 
 
 
     };
 
     class ComplexVariable{
+        std::complex<double> a,b,c;
     public:
-        std::complex<double> y;
-        ComplexVariable(){};
 
-        friend const ComplexVariable& operator-(const ComplexVariable& c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator-(const double c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator-(const ComplexVariable& c1, const double c2);
-        friend const ComplexVariable& operator-(const complex<double>& c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator-(const ComplexVariable& c1, const complex<double>& c2);
+        ComplexVariable():a(complex<double>(0,0)),b(complex<double>(0,0)),c(complex<double>(0,0)){};
 
+        ComplexVariable(std::complex<double> a,std::complex<double> b,std::complex<double> c){
+            this->a=a;
+            this->b=b;
+            this->c=c;
+        }
 
-        friend const ComplexVariable& operator*(const ComplexVariable& c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator*(const double c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator*(const ComplexVariable& c1, double c2);
-        friend const ComplexVariable& operator*(const complex<double>& c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator*(const ComplexVariable& c1, const complex<double>& c2);
+        std::complex<double> getA(){
+            return this->a;
+        }
 
-        friend const ComplexVariable& operator+(const ComplexVariable& c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator+(const double c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator+(const ComplexVariable& c1, double c2);
-        friend const ComplexVariable& operator+(const complex<double>& c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator+(const ComplexVariable& c1, const complex<double>& c2);
+        std::complex<double> getB(){
+            return this->b;
+        }
 
+        std::complex<double> getC(){
+            return this->c;
+        }
 
-        friend const ComplexVariable& operator==(const ComplexVariable& c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator==(const double c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator==(const ComplexVariable& c1, double c2);
-        friend const ComplexVariable& operator==(const complex<double>& c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator==(const ComplexVariable& c1, const complex<double>& c2);
-
-        friend const ComplexVariable& operator/(const ComplexVariable& c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator/(const double c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator/(const ComplexVariable& c1, double c2);
-        friend const ComplexVariable& operator/(const complex<double>& c1, const ComplexVariable& c2);
-        friend const ComplexVariable& operator/(const ComplexVariable& c1, const complex<double>& c2);
-
-        friend const ComplexVariable& operator^(const ComplexVariable& c1, const double c2);
+        friend  ComplexVariable& operator-( ComplexVariable& x,  ComplexVariable& y);
+        friend  ComplexVariable& operator-( double x,  ComplexVariable& y);
+        friend  ComplexVariable& operator-( ComplexVariable& x,  double y);
+        friend  ComplexVariable& operator-( complex<double>& x,  ComplexVariable& y);
+        friend  ComplexVariable& operator-( ComplexVariable& x,  complex<double>& y);
 
 
-        friend ostream& operator<<(ostream& os, const ComplexVariable& c1);
+        friend  ComplexVariable& operator*( ComplexVariable& x,  ComplexVariable& y);
+        friend  ComplexVariable& operator*( double x,  ComplexVariable& y);
+        friend  ComplexVariable& operator*( ComplexVariable& x, double y);
+        friend  ComplexVariable& operator*( complex<double>& x,  ComplexVariable& y);
+        friend  ComplexVariable& operator*( ComplexVariable& x,  complex<double>& y);
+
+        friend  ComplexVariable& operator+( ComplexVariable& x,  ComplexVariable& y);
+        friend  ComplexVariable& operator+( double x,  ComplexVariable& y);
+        friend  ComplexVariable& operator+( ComplexVariable& x, double y);
+        friend  ComplexVariable& operator+( complex<double>& x,  ComplexVariable& y);
+        friend  ComplexVariable& operator+( ComplexVariable& x,  complex<double>& y);
+
+
+        friend  ComplexVariable& operator==( ComplexVariable& x,  ComplexVariable& y);
+        friend  ComplexVariable& operator==( double x,  ComplexVariable& y);
+        friend  ComplexVariable& operator==( ComplexVariable& x, double y);
+        friend  ComplexVariable& operator==( complex<double>& x,  ComplexVariable& y);
+        friend  ComplexVariable& operator==( ComplexVariable& x,  complex<double>& y);
+
+        friend  ComplexVariable& operator/( ComplexVariable& x,  ComplexVariable& y);
+        friend  ComplexVariable& operator/( double x,  ComplexVariable& y);
+        friend  ComplexVariable& operator/( ComplexVariable& x, double y);
+        friend  ComplexVariable& operator/( complex<double>& x,  ComplexVariable& y);
+        friend  ComplexVariable& operator/( ComplexVariable& x,  complex<double>& y);
+
+        friend  ComplexVariable& operator^( ComplexVariable& x,  double y);
+
+
+        friend ostream& operator<<(ostream& os,  ComplexVariable& x);
 
     };
 
-    double solve(const RealVariable& a);
+    double solve( RealVariable& a);
 
-    complex<double> solve(const ComplexVariable& a);
+    complex<double> solve( ComplexVariable& a);
 
 }
 

@@ -10,73 +10,80 @@
 using namespace std;
 using namespace solver;
 
-//int main(){
-//    RealVariable x;
-//    cout << solve(2*x-4 == 10) << endl;  // 7
-//}
-
-const RealVariable& solver::operator-(const RealVariable& c1, const RealVariable& c2){
-    return c1;
-}
-const RealVariable& solver::operator-(const double c1, const RealVariable& c2){
-    return c2;
-}
-const RealVariable& solver::operator-(const RealVariable& c1, const double c){
-    return c1;
+int main(){
+    RealVariable x;
+    RealVariable y(1,2,-3);
+    RealVariable z(-4,7,19);
+    x=y-5-z;
+    cout<<x.getA()<<" "<<x.getB()<<" "<<x.getC()<<endl;
+    return 0;
 }
 
-const RealVariable& solver::operator*(const RealVariable& c1, const RealVariable& c2){
-    return c1;
+RealVariable& solver::operator-(RealVariable& x,RealVariable& y){
+    x.a=x.a-y.a;
+    x.b=x.b-y.b;
+    x.c=x.c-y.c;
+    return x;
 }
-const RealVariable& solver::operator*(const double c1, const RealVariable& c2){
-    return c2;
+RealVariable& solver::operator-(double x,RealVariable& y){
+    y.a=-y.a;
+    y.b=-y.b;
+    y.c=x-y.c;
+    return y;
 }
-const RealVariable& solver::operator*(const RealVariable& c1, const double c2){
-    return c1;
-}
-
-const RealVariable& solver::operator+(const RealVariable& c1, const RealVariable& c2){
-    return c1;
-}
-const RealVariable& solver::operator+(const double c1, const RealVariable& c2){
-    return c2;
-}
-const RealVariable& solver::operator+(const RealVariable& c1, const double c2){
-    return c1;
-}
-const RealVariable& solver::operator+(const RealVariable& c1, const complex<double>& c2){
-    return c1;
-}
-const RealVariable& solver::operator+(const complex<double>& c1, const RealVariable& c2){
-    return c2;
+RealVariable& solver::operator-(RealVariable& x,double y){
+    x.c=x.c-y;
+    return x;
 }
 
-const RealVariable& solver::operator==(const RealVariable& c1, const RealVariable& c2){
-    return c1;
+RealVariable& solver::operator*( RealVariable& x,  RealVariable& y){
+    return x;
 }
-const RealVariable& solver::operator==(const double c1, const RealVariable& c2){
-    return c2;
+RealVariable& solver::operator*( double x,  RealVariable& y){
+    return y;
 }
-const RealVariable& solver::operator==(const RealVariable& c1, const double c2){
-    return c1;
-}
-
-const RealVariable& solver::operator/(const RealVariable& c1, const RealVariable& c2){
-    return c1;
-}
-const RealVariable& solver::operator/(const double c1, const RealVariable& c2){
-    return c2;
-}
-const RealVariable& solver::operator/(const RealVariable& c1, const double c2){
-    return c1;
+RealVariable& solver::operator*( RealVariable& x,  double y){
+    return x;
 }
 
-const RealVariable& solver::operator^(const RealVariable& c1, const double c2){
-    return c1;
+RealVariable& solver::operator+( RealVariable& x,  RealVariable& y){
+    return x;
+}
+RealVariable& solver::operator+( double x,  RealVariable& y){
+    return y;
+}
+RealVariable& solver::operator+( RealVariable& x,  double y){
+    return x;
 }
 
 
-ostream& solver::operator<< (ostream& os, const RealVariable& c1){
+RealVariable& solver::operator==( RealVariable& x,  RealVariable& y){
+    return x;
+
+}
+RealVariable& solver::operator==( double x,  RealVariable& y){
+    return y;
+}
+RealVariable& solver::operator==( RealVariable& x,  double y){
+    return x;
+}
+
+RealVariable& solver::operator/( RealVariable& x,  RealVariable& y){
+    return x;
+}
+RealVariable& solver::operator/( double x,  RealVariable& y){
+    return y;
+}
+RealVariable& solver::operator/( RealVariable& x,  double y){
+    return x;
+}
+
+RealVariable& solver::operator^( RealVariable& x,  double y){
+    return x;
+}
+
+
+ostream& solver::operator<< (ostream& os,  RealVariable& x){
     return os;
 }
 
@@ -86,99 +93,99 @@ ostream& solver::operator<< (ostream& os, const RealVariable& c1){
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-const ComplexVariable& solver::operator-(const ComplexVariable& c1, const ComplexVariable& c2){
-    return c1;
+ComplexVariable& solver::operator-( ComplexVariable& x,  ComplexVariable& y){
+    return x;
 }
-const ComplexVariable& solver::operator-(const double c1, const ComplexVariable& c2){
-    return c2;
+ComplexVariable& solver::operator-( double x,  ComplexVariable& y){
+    return y;
 }
-const ComplexVariable& solver::operator-(const ComplexVariable& c1, double c2){
-    return c1;
+ComplexVariable& solver::operator-( ComplexVariable& x, double y){
+    return x;
 }
-const ComplexVariable& solver::operator-(const complex<double>& c1, const ComplexVariable& c2){
-    return c2;
+ComplexVariable& solver::operator-( complex<double>& x,  ComplexVariable& y){
+    return y;
 }
-const ComplexVariable& solver::operator-(const ComplexVariable& c1, const complex<double>& c2){
-    return c1;
-}
-
-
-
-
-const ComplexVariable& solver::operator*(const ComplexVariable& c1, const ComplexVariable& c2){
-    return c1;
-}
-const ComplexVariable& solver::operator*(const double c1, const ComplexVariable& c2){
-    return c2;
-}
-const ComplexVariable& solver::operator*(const ComplexVariable& c1, const double c2){
-    return c1;
+ComplexVariable& solver::operator-( ComplexVariable& x,  complex<double>& y){
+    return x;
 }
 
 
 
 
-const ComplexVariable& solver::operator+(const ComplexVariable& c1, const ComplexVariable& c2){
-    return c1;
+ComplexVariable& solver::operator*( ComplexVariable& x,  ComplexVariable& y){
+    return x;
 }
-const ComplexVariable& solver::operator+(const double c1, const ComplexVariable& c2){
-    return c2;
+ComplexVariable& solver::operator*( double x,  ComplexVariable& y){
+    return y;
 }
-const ComplexVariable& solver::operator+(const ComplexVariable& c1, const double c2){
-    return c1;
-}
-const ComplexVariable& solver::operator+(const complex<double>& c1, const ComplexVariable& c2){
-    return c2;
-}
-const ComplexVariable& solver::operator+(const ComplexVariable& c1, const complex<double>& c2){
-    return c1;
+ComplexVariable& solver::operator*( ComplexVariable& x,  double y){
+    return x;
 }
 
 
 
 
-const ComplexVariable& solver::operator==(const ComplexVariable& c1, const ComplexVariable& c2){
-    return c1;
+ComplexVariable& solver::operator+( ComplexVariable& x,  ComplexVariable& y){
+    return x;
 }
-const ComplexVariable& solver::operator==(const double c1, const ComplexVariable& c2){
-    return c2;
+ComplexVariable& solver::operator+( double x,  ComplexVariable& y){
+    return y;
 }
-const ComplexVariable& solver::operator==(const ComplexVariable& c1, const double c2){
-    return c1;
+ComplexVariable& solver::operator+( ComplexVariable& x,  double y){
+    return x;
 }
-
-const ComplexVariable& solver::operator==(const complex<double>& c1, const ComplexVariable& c2){
-    return c2;
+ComplexVariable& solver::operator+( complex<double>& x,  ComplexVariable& y){
+    return y;
 }
-const ComplexVariable& solver::operator==(const ComplexVariable& c1, const complex<double>& c2){
-    return c1;
-}
-
-
-
-const ComplexVariable& solver::operator/(const ComplexVariable& c1, const ComplexVariable& c2){
-    return c1;
-}
-const ComplexVariable& solver::operator/(const double c1, const ComplexVariable& c2){
-    return c2;
-}
-const ComplexVariable& solver::operator/(const ComplexVariable& c1, const double c2){
-    return c1;
-}
-
-const ComplexVariable& solver::operator^(const ComplexVariable& c1, const double c2){
-    return c1;
+ComplexVariable& solver::operator+( ComplexVariable& x,  complex<double>& y){
+    return x;
 }
 
 
-ostream& solver::operator<<(ostream& os, const ComplexVariable& c1){
+
+
+ComplexVariable& solver::operator==( ComplexVariable& x,  ComplexVariable& y){
+    return x;
+}
+ComplexVariable& solver::operator==( double x,  ComplexVariable& y){
+    return y;
+}
+ComplexVariable& solver::operator==( ComplexVariable& x,  double y){
+    return x;
+}
+
+ComplexVariable& solver::operator==( complex<double>& x,  ComplexVariable& y){
+    return y;
+}
+ComplexVariable& solver::operator==( ComplexVariable& x,  complex<double>& y){
+    return x;
+}
+
+
+
+ComplexVariable& solver::operator/( ComplexVariable& x,  ComplexVariable& y){
+    return x;
+}
+ComplexVariable& solver::operator/( double x,  ComplexVariable& y){
+    return y;
+}
+ComplexVariable& solver::operator/( ComplexVariable& x,  double y){
+    return x;
+}
+
+ComplexVariable& solver::operator^( ComplexVariable& x,  double y){
+    return x;
+}
+
+
+ostream& solver::operator<<(ostream& os,  ComplexVariable& x){
     return os;
 }
 
-double solver::solve(const RealVariable& a){
+double solver::solve( RealVariable& a){
     return 0;
 }
 
-complex<double> solver::solve(const ComplexVariable& a){
+complex<double> solver::solve( ComplexVariable& a){
     return 0;
 }
