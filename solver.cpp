@@ -102,7 +102,7 @@ ostream& solver::operator<< (ostream& os,  RealVariable& x){
  ComplexVariable& solver::operator-( ComplexVariable& x, double y){
     return x;
 }
- ComplexVariable& solver::operator-( complex<double>& x,  ComplexVariable& y){
+ ComplexVariable& solver::operator-( complex<double> x,  ComplexVariable& y){
     return y;
 }
  ComplexVariable& solver::operator-( ComplexVariable& x,  complex<double> y){
@@ -121,7 +121,7 @@ ostream& solver::operator<< (ostream& os,  RealVariable& x){
  ComplexVariable& solver::operator*( ComplexVariable& x,  double y){
     return x;
 }
- ComplexVariable& solver::operator*( complex<double>& x,  ComplexVariable& y){
+ ComplexVariable& solver::operator*( complex<double> x,  ComplexVariable& y){
     return y;
 }
  ComplexVariable& solver::operator*( ComplexVariable& x,  complex<double> y){
@@ -140,7 +140,7 @@ ostream& solver::operator<< (ostream& os,  RealVariable& x){
  ComplexVariable& solver::operator+( ComplexVariable& x,  double y){
     return x;
 }
- ComplexVariable& solver::operator+( complex<double>& x,  ComplexVariable& y){
+ ComplexVariable& solver::operator+( complex<double> x,  ComplexVariable& y){
     return y;
 }
  ComplexVariable& solver::operator+( ComplexVariable& x,  complex<double> y){
@@ -159,7 +159,7 @@ ostream& solver::operator<< (ostream& os,  RealVariable& x){
  ComplexVariable& solver::operator==( ComplexVariable& x,  double y){
     return x;
 }
- ComplexVariable& solver::operator==( complex<double>& x,  ComplexVariable& y){
+ ComplexVariable& solver::operator==( complex<double> x,  ComplexVariable& y){
     return y;
 }
  ComplexVariable& solver::operator==( ComplexVariable& x,  complex<double> y){
@@ -177,7 +177,7 @@ ostream& solver::operator<< (ostream& os,  RealVariable& x){
  ComplexVariable& solver::operator/( ComplexVariable& x,  double y){
     return x;
 }
- ComplexVariable& solver::operator/( complex<double>& x,  ComplexVariable& y){
+ ComplexVariable& solver::operator/( complex<double> x,  ComplexVariable& y){
     return y;
 }
  ComplexVariable& solver::operator/( ComplexVariable& x,  complex<double> y){
