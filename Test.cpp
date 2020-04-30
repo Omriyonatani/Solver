@@ -23,6 +23,7 @@ TEST_CASE("Double:RealVariable"){
 
 }
 
+
 TEST_CASE("RealVariable:Double"){
     RealVariable x;
     CHECK(solve(x*2-4 == 10)==7);
@@ -35,6 +36,7 @@ TEST_CASE("RealVariable:Double"){
     CHECK(solve(x*2+8 == x*-2+6)==-0.5);
     CHECK(solve(x*-6 == 0)==0);
 }
+
 
 TEST_CASE("Double:ComplexVariable"){
     ComplexVariable y;
@@ -53,6 +55,7 @@ TEST_CASE("Double:ComplexVariable"){
     CHECK(solve(5*y/2.5+7i-4 == 0)==std::complex<double>(4,-3.5));
 }
 
+
 TEST_CASE("Real Exceptions"){
     RealVariable x;
     CHECK_THROWS(solve((x^2)==-16));
@@ -68,6 +71,7 @@ TEST_CASE("Real Exceptions"){
 
 }
 
+
 TEST_CASE("Complex Exceptions"){
     ComplexVariable y;
     CHECK_THROWS(solve((y^2)/0+2i == 5));
@@ -76,6 +80,7 @@ TEST_CASE("Complex Exceptions"){
     CHECK_THROWS(solve(y/(1-1) == -1));
 
 }
+
 
 TEST_CASE("Complex:Divive By Zero Exception"){
     ComplexVariable y;
@@ -92,6 +97,7 @@ TEST_CASE("Complex:Divive By Zero Exception"){
 
 }
 
+
 TEST_CASE("Real:Divive By Zero Exception"){
     RealVariable x;
     CHECK_THROWS(solve((x^2)/0 == 5));
@@ -107,6 +113,7 @@ TEST_CASE("Real:Divive By Zero Exception"){
 
 }
 
+
 TEST_CASE("High Power ^ Exception"){
     ComplexVariable y;
     CHECK_THROWS(solve((y^3) == 0.0));
@@ -120,8 +127,6 @@ TEST_CASE("High Power ^ Exception"){
     CHECK_THROWS(solve((y^5) == 55));
 
 }
-
-//~~~~~~~~Ron's Tests~~~~~~~~~~
 
 
 TEST_CASE("General RealVariable"){
@@ -142,6 +147,7 @@ TEST_CASE("General RealVariable"){
     CHECK(((solve((x^2)-5*x+4)==1)||(solve((x^2)-5*x+4)==4)));
     CHECK(((solve(0.5*(x^2)-3*x+4 == 0)==2)||(solve(0.5*(x^2)-3*x+4 == 0)==4)));
 }
+
 
 TEST_CASE("General ComplexVariable"){
     ComplexVariable x;

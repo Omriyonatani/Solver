@@ -11,7 +11,6 @@ using namespace std;
 
 namespace solver{
 
-
     class RealVariable{
         double a,b,c;
     public:
@@ -60,10 +59,7 @@ namespace solver{
 
         friend  RealVariable& operator^( RealVariable& x,  double y);
 
-
         friend ostream& operator<<(ostream& os,  RealVariable& x);
-
-
 
     };
 
@@ -125,13 +121,10 @@ namespace solver{
 
         friend  ComplexVariable& operator^( ComplexVariable& x,  double y);
 
-
         friend ostream& operator<<(ostream& os,  ComplexVariable& x);
 
     };
 
     double solve( RealVariable& a);
-
     complex<double> solve( ComplexVariable& a);
-
 }
