@@ -125,7 +125,7 @@ RealVariable& solver::operator-(RealVariable& x,double y){
 }
 
 // Operation OutStream "<<"
-ostream& solver::operator<< (ostream& os,RealVariable& x){
+ostream& solver::operator<<(ostream& os,RealVariable& x){
 
     return os;
 }
@@ -189,18 +189,33 @@ ostream& solver::operator<< (ostream& os,RealVariable& x){
 
 // Operation Equals "="
  ComplexVariable& solver::operator==(ComplexVariable& x,ComplexVariable& y){
+    x.a=x.a-y.a;
+    x.b=x.b-y.b;
+    x.c=x.c-y.c;
     return x;
 }
  ComplexVariable& solver::operator==(double x,ComplexVariable& y){
+    y.a=-(y.a);
+    y.b=-(y.b);
+    y.c=x-(y.c);
     return y;
 }
  ComplexVariable& solver::operator==(ComplexVariable& x,double y){
+    x.a=x.a;
+    x.b=x.b;
+    x.c=x.c-y;
     return x;
 }
  ComplexVariable& solver::operator==(complex<double> x,ComplexVariable& y){
+    y.a = -(y.a);
+    y.b = -(y.b);
+    y.c = x-(y.c);
     return y;
 }
  ComplexVariable& solver::operator==(ComplexVariable& x,complex<double> y){
+    x.a = x.a;
+    x.b = x.b;
+    x.c = x.c-y;
     return x;
 }
 
@@ -224,6 +239,14 @@ ostream& solver::operator<< (ostream& os,RealVariable& x){
 
 // Operation Power "*"
  ComplexVariable& solver::operator^(ComplexVariable& x,double y){
+    if(y>2){
+        throw std::logic_error("The Power bigger than 2\n");
+    }
+    while(y>0){
+        x=x*x;
+        y--;
+    }
+    return x;
     return x;
 }
 
