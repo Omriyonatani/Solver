@@ -247,7 +247,6 @@ ostream& solver::operator<<(ostream& os,RealVariable& x){
         y--;
     }
     return x;
-    return x;
 }
 
 // Operation OutStream "<<"
