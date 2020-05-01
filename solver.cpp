@@ -7,15 +7,18 @@
 #include <string>
 #include <stdexcept>
 #include <iostream>
+#define  EPS 0.0001
 
 using namespace std;
 using namespace solver;
 
+RealVariable t;
+
 int main(){
-    ComplexVariable x;
-    ComplexVariable y(std::complex<double>(1,0),std::complex<double>(1,1),std::complex<double>(-1,0));
+    RealVariable x;
+    RealVariable y(2,1,1);
     RealVariable z(-4,7,19);
-    x=y-5;
+    x=y-y-y-z;
     cout<<x.getA()<<" "<<x.getB()<<" "<<x.getC()<<endl;
     return 0;
 }
@@ -26,20 +29,28 @@ int main(){
 
 // Operation Minus "-"
 RealVariable& solver::operator-(RealVariable& x,RealVariable& y){
-    x.a=x.a-y.a;
-    x.b=x.b-y.b;
-    x.c=x.c-y.c;
-    return x;
+    t.a=x.a-y.a;
+    t.b=x.b-y.b;
+    t.c=x.c-y.c;
+    return t;
 }
 RealVariable& solver::operator-(double x,RealVariable& y){
-    y.a=-y.a;
-    y.b=-y.b;
-    y.c=x-y.c;
-    return y;
+    // y.a=-y.a;
+    // y.b=-y.b;
+    // y.c=x-y.c;
+    // return y;
+    t.a=-y.a;
+    t.b=-y.b;
+    t.c=x-y.c;
+    return t;
 }
 RealVariable& solver::operator-(RealVariable& x,double y){
-    x.c=x.c-y;
-    return x;
+    t.a=x.a;
+    t.b=x.b;
+    t.c=x.c-y;
+    return t;
+    // x.c=x.c-y;
+    // return x;
 }
 
 // Operation Multiply "*"
@@ -163,24 +174,24 @@ ComplexVariable& solver::operator-(ComplexVariable& x, double y){
     x.c=x.c-y;
     return x;
 }
-ComplexVariable& solver::operator-(const complex<double>& x,ComplexVariable& y){
+ComplexVariable& solver::operator-(const complex<double> x,ComplexVariable& y){
     y.a=-y.a;
     y.b=-y.b;
     y.c=x-y.c;
     return y;
 }
-ComplexVariable& solver::operator-(ComplexVariable& x, const complex<double>& y){
+ComplexVariable& solver::operator-(ComplexVariable& x, const complex<double> y){
     x.c-=y;
     return x;
 }
 
 // Operation Multiply "*"
 ComplexVariable& solver::operator*(ComplexVariable& x,ComplexVariable& y){
-    if(x.a!=0){
-        if(y.a!=0||y.b!=0) throw std::logic_error("Power cant be more than 2\n");
+    if(x.a!=std::complex<double>(0,0)){
+        if(y.a!=std::complex<double>(0,0)||y.b!=std::complex<double>(0,0)) throw std::logic_error("Power cant be more than 2\n");
     }
-    if(y.a!=0){
-        if(x.a!=0||x.b!=0) throw std::logic_error("Power cant be more than 2\n");
+    if(y.a!=std::complex<double>(0,0)){
+        if(x.a!=std::complex<double>(0,0)||x.b!=std::complex<double>(0,0)) throw std::logic_error("Power cant be more than 2\n");
     }
 
     x.a=x.a*y.c+y.a*x.c+x.b*y.b;
