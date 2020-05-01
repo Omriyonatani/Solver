@@ -13,6 +13,7 @@ using namespace std;
 using namespace solver;
 
 RealVariable t;
+ComplexVariable c;
 
 int main(){
     RealVariable x;
@@ -123,14 +124,17 @@ RealVariable& solver::operator==(RealVariable& x,double y){
 }
 
 // Operaton Divide "/"
-RealVariable& solver::operator/(RealVariable& x,RealVariable& y){
-    return x;
+ RealVariable& solver::operator/(double x,RealVariable& y){
+    t.a = x/y.a;
+    t.b = x/y.b;
+    t.c = x/y.c;
+    return t;
 }
-RealVariable& solver::operator/(double x,RealVariable& y){
-    return y;
-}
-RealVariable& solver::operator/(RealVariable& x,double y){
-    return x;
+ RealVariable& solver::operator/(RealVariable& x,double y){
+    t.a = x.a/y;
+    t.b = x.b/y;
+    t.c = x.c/y;
+    return t;
 }
 
 // Operation Power "^"
@@ -144,15 +148,6 @@ RealVariable& solver::operator^(RealVariable& x,double y){
     }
     return x;
 }
-
-// Operation OutStream "<<"
-ostream& solver::operator<<(ostream& os,RealVariable& x){
-
-    return os;
-}
-
-
-
 
 
 // Complex Variable:
@@ -276,20 +271,29 @@ ComplexVariable& solver::operator==(ComplexVariable& x,complex<double> y){
 
 
 // Operation Divide "/"
-ComplexVariable& solver::operator/(ComplexVariable& x,ComplexVariable& y){
-    return x;
+ ComplexVariable& solver::operator/(double x,ComplexVariable& y){
+     c.a = x/y.a;
+     c.b = x/y.b;
+     c.c = x/y.c;
+    return c;
 }
-ComplexVariable& solver::operator/(double x,ComplexVariable& y){
-    return y;
+ ComplexVariable& solver::operator/(ComplexVariable& x,double y){
+     c.a = x.a/y;
+     c.b = x.b/y;
+     c.c = x.c/y;
+    return c;
 }
-ComplexVariable& solver::operator/(ComplexVariable& x,double y){
-    return x;
+ ComplexVariable& solver::operator/(complex<double> x,ComplexVariable& y){
+     c.a = x/y.a;
+     c.b = x/y.b;
+     c.c = x/y.c;
+    return c;
 }
-ComplexVariable& solver::operator/(complex<double> x,ComplexVariable& y){
-    return y;
-}
-ComplexVariable& solver::operator/(ComplexVariable& x,complex<double> y){
-    return x;
+ ComplexVariable& solver::operator/(ComplexVariable& x,complex<double> y){
+     c.a = x.a/y;
+     c.b = x.b/y;
+     c.c = x.c/y;
+    return c;
 }
 
 // Operation Power "*"
@@ -303,12 +307,6 @@ ComplexVariable& solver::operator^(ComplexVariable& x,double y){
     }
     return x;
 }
-
-// Operation OutStream "<<"
-ostream& solver::operator<<(ostream& os,ComplexVariable& x){
-    return os;
-}
-
 
 // Solve Functios:
 double solver::solve(RealVariable& a){

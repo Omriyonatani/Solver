@@ -10,7 +10,6 @@
 using namespace std;
 
 namespace solver{
-
     class RealVariable{
         double a,b,c;
     public:
@@ -53,13 +52,10 @@ namespace solver{
         friend  RealVariable& operator==( double x,  RealVariable& y);
         friend  RealVariable& operator==( RealVariable& x,  double y);
 
-        friend  RealVariable& operator/( RealVariable& x,  RealVariable& y);
         friend  RealVariable& operator/( double x,  RealVariable& y);
         friend  RealVariable& operator/( RealVariable& x,  double y);
 
         friend  RealVariable& operator^( RealVariable& x,  double y);
-
-        friend ostream& operator<<(ostream& os,  RealVariable& x);
 
     };
 
@@ -113,7 +109,6 @@ namespace solver{
         friend  ComplexVariable& operator==( complex<double> x,  ComplexVariable& y);
         friend  ComplexVariable& operator==( ComplexVariable& x ,complex<double> y);
 
-        friend  ComplexVariable& operator/( ComplexVariable& x,  ComplexVariable& y);
         friend  ComplexVariable& operator/( double x,  ComplexVariable& y);
         friend  ComplexVariable& operator/( ComplexVariable& x, double y);
         friend  ComplexVariable& operator/( complex<double> x,  ComplexVariable& y);
