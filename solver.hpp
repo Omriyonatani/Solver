@@ -35,6 +35,8 @@ namespace solver{
         double getC(){
             return this->c;
         }
+
+        bool equals(RealVariable x);
         
         friend RealVariable& operator-(RealVariable& x,RealVariable& y);
         friend RealVariable& operator-( double x,RealVariable& y);
@@ -54,7 +56,6 @@ namespace solver{
         friend  RealVariable& operator==( double x,  RealVariable& y);
         friend  RealVariable& operator==( RealVariable& x,  double y);
 
-        friend  RealVariable& operator/( RealVariable& x,  RealVariable& y);
         friend  RealVariable& operator/( double x,  RealVariable& y);
         friend  RealVariable& operator/( RealVariable& x,  double y);
 
@@ -88,6 +89,8 @@ namespace solver{
             return this->c;
         }
 
+        bool equals(ComplexVariable x);
+
         friend  ComplexVariable& operator-( ComplexVariable& x,  ComplexVariable& y);
         friend  ComplexVariable& operator-( double x,  ComplexVariable& y);
         friend  ComplexVariable& operator-( ComplexVariable& x,  double y);
@@ -114,7 +117,6 @@ namespace solver{
         friend  ComplexVariable& operator==( complex<double> x,  ComplexVariable& y);
         friend  ComplexVariable& operator==( ComplexVariable& x ,complex<double> y);
 
-        friend  ComplexVariable& operator/( ComplexVariable& x,  ComplexVariable& y);
         friend  ComplexVariable& operator/( double x,  ComplexVariable& y);
         friend  ComplexVariable& operator/( ComplexVariable& x, double y);
         friend  ComplexVariable& operator/( complex<double> x,  ComplexVariable& y);

@@ -7,6 +7,7 @@
 #include <string>
 #include <stdexcept>
 #include <iostream>
+#include <math.h>
 
 
 using namespace std;
@@ -167,16 +168,22 @@ RealVariable& solver::operator==(RealVariable& x,double y){
 
 // Operaton Divide "/"
  RealVariable& solver::operator/(double x,RealVariable& y){
-    t.a = x/y.a;
-    t.b = x/y.b;
-    t.c = x/y.c;
-    return t;
+    RealVariable* temp=new RealVariable();
+    rlist.push_back(temp);
+    RealVariable& rtemp=*temp;
+    rtemp.a = x/y.a;
+    rtemp.b = x/y.b;
+    rtemp.c = x/y.c;
+    return rtemp;
 }
  RealVariable& solver::operator/(RealVariable& x,double y){
-    t.a = x.a/y;
-    t.b = x.b/y;
-    t.c = x.c/y;
-    return t;
+    RealVariable* temp=new RealVariable();
+    rlist.push_back(temp);
+    RealVariable& rtemp=*temp;
+    rtemp.a = x.a/y;
+    rtemp.b = x.b/y;
+    rtemp.c = x.c/y;
+    return rtemp;
 }
 
 // Operation Power "^"
@@ -184,20 +191,11 @@ RealVariable& solver::operator^(RealVariable& x,double y){
     if(y>2){
         throw std::logic_error("The Power bigger than 2\n");
     }
-    while(y>0){
-        x=x*x;
-        y--;
-    }
-    return x;
+    RealVariable* temp=new RealVariable(1,0,0);
+    rlist.push_back(temp);
+    RealVariable& rtemp=*temp;
+    return rtemp;
 }
-
-// Operation OutStream "<<"
-ostream& solver::operator<<(ostream& os,RealVariable& x){
-
-    return os;
-}
-
-
 
 
 
@@ -415,28 +413,52 @@ ComplexVariable& solver::operator==(ComplexVariable& x,complex<double> y){
 
 // Operation Divide "/"
  ComplexVariable& solver::operator/(double x,ComplexVariable& y){
-     c.a = x/y.a;
-     c.b = x/y.b;
-     c.c = x/y.c;
-    return c;
+    ComplexVariable* temp=new ComplexVariable();
+    clist.push_back(temp);
+    ComplexVariable& ctemp=*temp;
+    if(y.equals(ComplexVariable(0,0,0))){
+        throw std::logic_error("Zero Divide Error\n");
+    }
+     ctemp.a = x/y.a;
+     ctemp.b = x/y.b;
+     ctemp.c = x/y.c;
+    return ctemp;
 }
  ComplexVariable& solver::operator/(ComplexVariable& x,double y){
-     c.a = x.a/y;
-     c.b = x.b/y;
-     c.c = x.c/y;
-    return c;
+    ComplexVariable* temp=new ComplexVariable();
+    clist.push_back(temp);
+    ComplexVariable& ctemp=*temp;
+    if(y==0){
+        throw std::logic_error("Zero Divide Error\n");
+    }
+     ctemp.a = x.a/y;
+     ctemp.b = x.b/y;
+     ctemp.c = x.c/y;
+    return ctemp;
 }
  ComplexVariable& solver::operator/(complex<double> x,ComplexVariable& y){
-     c.a = x/y.a;
-     c.b = x/y.b;
-     c.c = x/y.c;
-    return c;
+    ComplexVariable* temp=new ComplexVariable();
+    clist.push_back(temp);
+    ComplexVariable& ctemp=*temp;
+    if(y.equals(ComplexVariable(0,0,0))){
+        throw std::logic_error("Zero Divide Error\n");
+    }
+     ctemp.a = x/y.a;
+     ctemp.b = x/y.b;
+     ctemp.c = x/y.c;
+    return ctemp;
 }
  ComplexVariable& solver::operator/(ComplexVariable& x,complex<double> y){
-     c.a = x.a/y;
-     c.b = x.b/y;
-     c.c = x.c/y;
-    return c;
+    ComplexVariable* temp=new ComplexVariable();
+    clist.push_back(temp);
+    ComplexVariable& ctemp=*temp;
+    if(y.imag()==0 && y.real()==0){
+        throw std::logic_error("Zero Divide Error\n");
+    }
+     ctemp.a = x.a/y;
+     ctemp.b = x.b/y;
+     ctemp.c = x.c/y;
+    return ctemp;
 }
 
 // Operation Power "*"
@@ -444,22 +466,43 @@ ComplexVariable& solver::operator^(ComplexVariable& x,double y){
     if(y>2){
         throw std::logic_error("The Power bigger than 2\n");
     }
-    while(y>0){
-        x=x*x;
-        y--;
+    ComplexVariable* temp=new ComplexVariable(1,0,0);
+    clist.push_back(temp);
+    ComplexVariable& ctemp=*temp;
+    return ctemp;
+}
+
+bool ComplexVariable::equals(ComplexVariable x){
+    if((this->getA().imag()!=x.getA().imag())||(this->getA().real()!=x.getA().real())){
+        return false;
     }
-    return x;
+    if((this->getB().imag()!=x.getB().imag())||(this->getB().real()!=x.getB().real())){
+        return false;
+    }  
+    if((this->getC().imag()!=x.getC().imag())||(this->getC().real()!=x.getC().real())){
+        return false;
+    }
+    return true;  
 }
 
-// Operation OutStream "<<"
-ostream& solver::operator<<(ostream& os,ComplexVariable& x){
-    return os;
+bool RealVariable::equals(RealVariable x){
+    if((this->getA()!=x.getA())||(this->getB()!=x.getB())||(this->getC()!=x.getC())){
+        return false;
+    }
+    return true;  
 }
-
-
+ 
 // Solve Functios:
 double solver::solve(RealVariable& a){
-    return 0;
+    if(a.getA()==0){
+        return (-a.getC())/a.getB();
+    }
+    double sqrt = (a.getA()*a.getA()) - 4 * a.getA() * a.getC();
+    if(sqrt < 0){
+        throw std::logic_error("There is no real solution to the equation\n");
+    }
+    double res = ((-a.getC())+sqrtl(sqrt))/(2*a.getA());
+    return res;
 }
 
 complex<double> solver::solve(ComplexVariable& a){
