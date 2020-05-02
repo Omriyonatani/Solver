@@ -15,6 +15,19 @@ using namespace solver;
 
 
 int main(){
+    RealVariable x(0,1,0);
+
+    cout << solve((x^2) + 2*x + 4.0 == 20 + 6.0*x/2 - x) << endl;   // 4 or -4
+    double xvalue = solve(2*x-4.0 == 10.0);   // xvalue == 7
+
+    cout << xvalue << endl;
+
+        RealVariable x;
+        RealVariable y(2,-2,3);
+        RealVariable z(0,0,1);
+        x = (z+2)^2;
+        cout << x.getA() << ", " << x.getB() << " , " << x.getC() << " , Init" << endl;
+
     try{
     ComplexVariable x;
     ComplexVariable y(std::complex<double>(2,2),std::complex<double>(0,1),std::complex<double>(-1,3));
@@ -110,9 +123,9 @@ RealVariable& solver::operator+(RealVariable& x,RealVariable& y){
     RealVariable* temp=new RealVariable();
     rlist.push_back(temp);
     RealVariable& rtemp=*temp;
-    rtemp.a=y.a*x.a;
-    rtemp.b=y.b*x.b;
-    rtemp.c=y.c*x.c;
+    rtemp.a=y.a+x.a;
+    rtemp.b=y.b+x.b;
+    rtemp.c=y.c+x.c;
     cout<<"Real+Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
     return rtemp;
 }
@@ -168,21 +181,29 @@ RealVariable& solver::operator==(RealVariable& x,double y){
 
 // Operaton Divide "/"
  RealVariable& solver::operator/(double x,RealVariable& y){
+    if(y.a == 0 && y.b == 0 && y.c == 0 ){
+        throw std::logic_error("Can't divide by Zero\n");
+    }
     RealVariable* temp=new RealVariable();
     rlist.push_back(temp);
     RealVariable& rtemp=*temp;
     rtemp.a = x/y.a;
     rtemp.b = x/y.b;
     rtemp.c = x/y.c;
+    cout<<"Double/Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
     return rtemp;
 }
  RealVariable& solver::operator/(RealVariable& x,double y){
+    if( y == 0){
+        throw std::logic_error("Can't divide by Zero\n");
+    }
     RealVariable* temp=new RealVariable();
     rlist.push_back(temp);
     RealVariable& rtemp=*temp;
     rtemp.a = x.a/y;
     rtemp.b = x.b/y;
     rtemp.c = x.c/y;
+     cout<<"Real/Double:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
     return rtemp;
 }
 
@@ -191,10 +212,35 @@ RealVariable& solver::operator^(RealVariable& x,double y){
     if(y>2){
         throw std::logic_error("The Power bigger than 2\n");
     }
-    RealVariable* temp=new RealVariable(1,0,0);
-    rlist.push_back(temp);
-    RealVariable& rtemp=*temp;
-    return rtemp;
+    if(y==0){
+        RealVariable *temp = new RealVariable(0, 0, 1);
+        rlist.push_back(temp);
+        RealVariable &rtemp = *temp;
+        cout<<"Real^0:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+        return rtemp;
+    }
+    if(y<0){
+        throw std::logic_error("The Power lower than 0\n");
+    }
+    if(y==1) {
+        RealVariable *temp = new RealVariable;
+        rlist.push_back(temp);
+        RealVariable &rtemp = *temp;
+        rtemp.a=x.a;
+        rtemp.b=x.b;
+        rtemp.c=x.c;
+        cout<<"Real^1:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+        return rtemp;
+    }
+    if(y==2) {
+        RealVariable *temp = new RealVariable;
+        rlist.push_back(temp);
+        RealVariable &rtemp = *temp;
+        rtemp=x*x;
+        cout<<"Real^2:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+        return rtemp;
+    }
+    return x;
 }
 
 
