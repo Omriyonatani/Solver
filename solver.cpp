@@ -461,7 +461,7 @@ ComplexVariable& solver::operator==(ComplexVariable& x,complex<double> y){
     return ctemp;
 }
 
-// Operation Power "*"
+// Operation Power "^"
 ComplexVariable& solver::operator^(ComplexVariable& x,double y){
     if(y>2){
         throw std::logic_error("The Power bigger than 2\n");
