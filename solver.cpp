@@ -497,11 +497,11 @@ double solver::solve(RealVariable& a){
     if(a.getA()==0){
         return (-a.getC())/a.getB();
     }
-    double sqrt = (a.getA()*a.getA()) - 4 * a.getA() * a.getC();
+    double sqrt = (a.getB()*a.getB()) - 4 * a.getA() * a.getC();
     if(sqrt < 0){
         throw std::logic_error("There is no real solution to the equation\n");
     }
-    double res = ((-a.getC())+sqrtl(sqrt))/(2*a.getA());
+    double res = ((-a.getB())+sqrtl(sqrt))/(2*a.getA());
     return res;
 }
 
