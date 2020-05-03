@@ -588,7 +588,16 @@ double solver::solve(RealVariable& a){
     return res;
 }
 complex<double> solver::solve(ComplexVariable& a){
-
+    if(a.getA()==complex<double>(0,0)){
+        return (-a.getC())/a.getB();
+    }
+    double sqrt = -(a.getC().real());
+    if(sqrt<0){
+        return complex<double>(0,sqrtl(-sqrt));
+    }
+    else {
+        return complex<double>(sqrtl(sqrt),0);
+    }
     return 0;
 }
 
