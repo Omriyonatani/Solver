@@ -13,7 +13,6 @@
 using namespace std;
 using namespace solver;
 
-
 std::vector<RealVariable*> rlist;
 std::vector<ComplexVariable*> clist;
 

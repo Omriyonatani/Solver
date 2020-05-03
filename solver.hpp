@@ -69,7 +69,7 @@ namespace solver{
         std::complex<double> a,b,c;
     public:
         
-        ComplexVariable():a(complex<double>(0,0)),b(complex<double>(0,0)),c(complex<double>(0,0)){};
+        ComplexVariable():a(complex<double>(0,0)),b(complex<double>(1,0)),c(complex<double>(0,0)){};
 
         ComplexVariable(std::complex<double> a,std::complex<double> b,std::complex<double> c){
             this->a=a;
