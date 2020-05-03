@@ -598,6 +598,7 @@ complex<double> solver::solve(ComplexVariable& a){
     else {
         return complex<double>(sqrtl(sqrt),0);
     }
+    freeVariables();
     return 0;
 }
 
