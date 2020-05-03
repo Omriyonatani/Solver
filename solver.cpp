@@ -14,20 +14,23 @@ using namespace std;
 using namespace solver;
 
 
-int main(){
-//    RealVariable x(0,1,0);
-//
+// int main(){
+//    RealVariable x;
+
 //    cout << solve((x^2) + 2*x + 4.0 == 20 + 6.0*x/2 - x) << endl;   // 4 or -4
 //    double xvalue = solve(2*x-4.0 == 10.0);   // xvalue == 7
-//
+
 //    cout << xvalue << endl;
-//
-//        RealVariable x;
+    
+//     catch(exception& e){
+//         cout<<"caught:"<<e.what()<<endl;
+//     }
+
 //        RealVariable y(2,-2,3);
 //        RealVariable z(0,0,1);
 //        x = (z+2)^2;
 //        cout << x.getA() << ", " << x.getB() << " , " << x.getC() << " , Init" << endl;
-//
+
 //    try{
 //    ComplexVariable x;
 //    ComplexVariable y(std::complex<double>(2,2),std::complex<double>(0,1),std::complex<double>(-1,3));
@@ -38,10 +41,11 @@ int main(){
 //    catch(exception& e){
 //        cout<<"caught:"<<e.what()<<endl;
 //    }
-    return 0;
-}
+//     return 0;
+// }
 
-
+std::vector<RealVariable*> rlist;
+std::vector<ComplexVariable*> clist;
 
 // Real Variable:
 
@@ -180,19 +184,19 @@ RealVariable& solver::operator==(RealVariable& x,double y){
 }
 
 // Operation Divide "/"
- RealVariable& solver::operator/(double x,RealVariable& y){
-    if(y.a == 0 && y.b == 0 && y.c == 0 ){
-        throw std::logic_error("Can't divide by Zero\n");
-    }
-    RealVariable* temp=new RealVariable();
-    rlist.push_back(temp);
-    RealVariable& rtemp=*temp;
-    rtemp.a = x/y.a;
-    rtemp.b = x/y.b;
-    rtemp.c = x/y.c;
-    cout<<"Double/Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
-    return rtemp;
-}
+//  RealVariable& solver::operator/(double x,RealVariable& y){
+//     if(y.a == 0 && y.b == 0 && y.c == 0 ){
+//         throw std::logic_error("Can't divide by Zero\n");
+//     }
+//     RealVariable* temp=new RealVariable();
+//     rlist.push_back(temp);
+//     RealVariable& rtemp=*temp;
+//     rtemp.a = x/y.a;
+//     rtemp.b = x/y.b;
+//     rtemp.c = x/y.c;
+//     cout<<"Double/Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+//     return rtemp;
+// }
  RealVariable& solver::operator/(RealVariable& x,double y){
     if( y == 0){
         throw std::logic_error("Can't divide by Zero\n");
@@ -461,18 +465,18 @@ ComplexVariable& solver::operator==(ComplexVariable& x,complex<double> y){
 }
 
 // Operation Divide "/"
- ComplexVariable& solver::operator/(double x,ComplexVariable& y){
-    ComplexVariable* temp=new ComplexVariable();
-    clist.push_back(temp);
-    ComplexVariable& ctemp=*temp;
-    if(y.equals(ComplexVariable(0,0,0))){
-        throw std::logic_error("Zero Divide Error\n");
-    }
-     ctemp.a = x/y.a;
-     ctemp.b = x/y.b;
-     ctemp.c = x/y.c;
-    return ctemp;
-}
+//  ComplexVariable& solver::operator/(double x,ComplexVariable& y){
+//     ComplexVariable* temp=new ComplexVariable();
+//     clist.push_back(temp);
+//     ComplexVariable& ctemp=*temp;
+//     if(y.equals(ComplexVariable(0,0,0))){
+//         throw std::logic_error("Zero Divide Error\n");
+//     }
+//      ctemp.a = x/y.a;
+//      ctemp.b = x/y.b;
+//      ctemp.c = x/y.c;
+//     return ctemp;
+// }
  ComplexVariable& solver::operator/(ComplexVariable& x,double y){
     ComplexVariable* temp=new ComplexVariable();
     clist.push_back(temp);
@@ -485,18 +489,18 @@ ComplexVariable& solver::operator==(ComplexVariable& x,complex<double> y){
      ctemp.c = x.c/y;
     return ctemp;
 }
- ComplexVariable& solver::operator/(complex<double> x,ComplexVariable& y){
-    ComplexVariable* temp=new ComplexVariable();
-    clist.push_back(temp);
-    ComplexVariable& ctemp=*temp;
-    if(y.equals(ComplexVariable(0,0,0))){
-        throw std::logic_error("Zero Divide Error\n");
-    }
-     ctemp.a = x/y.a;
-     ctemp.b = x/y.b;
-     ctemp.c = x/y.c;
-    return ctemp;
-}
+//  ComplexVariable& solver::operator/(complex<double> x,ComplexVariable& y){
+//     ComplexVariable* temp=new ComplexVariable();
+//     clist.push_back(temp);
+//     ComplexVariable& ctemp=*temp;
+//     if(y.equals(ComplexVariable(0,0,0))){
+//         throw std::logic_error("Zero Divide Error\n");
+//     }
+//      ctemp.a = x/y.a;
+//      ctemp.b = x/y.b;
+//      ctemp.c = x/y.c;
+//     return ctemp;
+// }
  ComplexVariable& solver::operator/(ComplexVariable& x,complex<double> y){
     ComplexVariable* temp=new ComplexVariable();
     clist.push_back(temp);
@@ -568,37 +572,65 @@ bool RealVariable::equals(RealVariable x){
 
 // OutStream functions:
 ostream& operator<<(ostream& os,ComplexVariable& x){
-    return (os << x.getA() << x.getB() << x.getC() << '+' << 'i');
+    return (os << x.getA()<<"(x^2) " << x.getB() <<"x "<< x.getC());
 }
 ostream& operator<<(ostream& os,RealVariable& x){
-    return (os << x.getA() << x.getB() << x.getC());
+    return (os << x.getA()<<"(x^2) " << x.getB() <<"x "<< x.getC());
 }
 
 // Solve Functios:
 double solver::solve(RealVariable& a){
-    if(a.getA()==0){
-        return (-a.getC())/a.getB();
+    RealVariable ans = a;
+    if(ans.getA()==0){
+        if(ans.getB()==0){
+            if(ans.getC()!=0){
+                freeVariables();
+                throw std::logic_error("There is no solution to the equation\n");
+            }
+            else{
+                freeVariables();
+                cout<<"Infinte solutions!"<<endl;
+                return 1;
+            }
+        }
+        freeVariables();
+        return (-ans.getC())/ans.getB();
     }
-    double sqrt = (a.getB()*a.getB()) - 4 * a.getA() * a.getC();
+    double sqrt = (ans.getB()*ans.getB()) - 4 * ans.getA() * ans.getC();
     if(sqrt < 0){
+        freeVariables();
         throw std::logic_error("There is no real solution to the equation\n");
     }
-    double res = ((-a.getB())+sqrtl(sqrt))/(2*a.getA());
+    double res = ((-ans.getB())+sqrtl(sqrt))/(2*ans.getA());
     freeVariables();
     return res;
 }
 complex<double> solver::solve(ComplexVariable& a){
-    if(a.getA()==complex<double>(0,0)){
-        return (-a.getC())/a.getB();
+    ComplexVariable ans = a;
+    if(ans.getA()==complex<double>(0,0)){
+        if(ans.getB()==complex<double>(0,0)){
+            if(ans.getC()!=complex<double>(0,0)){
+                freeVariables();
+                throw std::logic_error("There is no solution to the equation\n");
+            }
+            else{
+                freeVariables();
+                cout<<"Infinte solutions!"<<endl;
+                return 1;
+            }
+        }
+        freeVariables();
+        return (-ans.getC())/ans.getB();
     }
-    double sqrt = -(a.getC().real());
+    double sqrt = -(ans.getC().real());
     if(sqrt<0){
+        freeVariables();
         return complex<double>(0,sqrtl(-sqrt));
     }
     else {
+        freeVariables();
         return complex<double>(sqrtl(sqrt),0);
     }
-    freeVariables();
     return 0;
 }
 
@@ -606,7 +638,10 @@ void solver::freeVariables(){
     for(int i=0;i<clist.size();i++){
         delete clist[i];
     }
+    clist.clear();
     for(int i=0;i<rlist.size();i++){
         delete rlist[i];
     }
+    rlist.clear();
+
 }

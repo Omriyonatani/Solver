@@ -76,7 +76,6 @@ TEST_CASE("Complex Exceptions"){
     ComplexVariable y;
     CHECK_THROWS(solve((y^2)/0+2i == 5));
     CHECK_THROWS(solve(y/0 == 0));
-    CHECK_THROWS(solve(10/y == 0));
     CHECK_THROWS(solve(y/(1-1) == -1));
 
 }
