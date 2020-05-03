@@ -133,4 +133,5 @@ namespace solver{
 
     vector<RealVariable*> rlist;
     vector<ComplexVariable*> clist;
+    void freeVariables();
 }

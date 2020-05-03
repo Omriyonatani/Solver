@@ -584,9 +584,19 @@ double solver::solve(RealVariable& a){
         throw std::logic_error("There is no real solution to the equation\n");
     }
     double res = ((-a.getB())+sqrtl(sqrt))/(2*a.getA());
+    freeVariables();
     return res;
 }
 complex<double> solver::solve(ComplexVariable& a){
 
     return 0;
+}
+
+void solver::freeVariables(){
+    for(int i=0;i<clist.size();i++){
+        delete clist[i];
+    }
+    for(int i=0;i<rlist.size();i++){
+        delete rlist[i];
+    }
 }
