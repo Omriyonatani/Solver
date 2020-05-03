@@ -39,29 +39,29 @@ namespace solver{
         bool equals(RealVariable x);
         
         friend RealVariable& operator-(RealVariable& x,RealVariable& y);
-        friend RealVariable& operator-( double x,RealVariable& y);
-        friend RealVariable& operator-(RealVariable& x,  double y);
+        friend RealVariable& operator-(double x,RealVariable& y);
+        friend RealVariable& operator-(RealVariable& x,double y);
 
 
-        friend  RealVariable& operator*( RealVariable& x,  RealVariable& y);
-        friend  RealVariable& operator*( double x,  RealVariable& y);
-        friend  RealVariable& operator*( RealVariable& x,  double y);
+        friend  RealVariable& operator*(RealVariable& x,RealVariable& y);
+        friend  RealVariable& operator*(double x,RealVariable& y);
+        friend  RealVariable& operator*(RealVariable& x,double y);
 
-        friend  RealVariable& operator+( RealVariable& x,  RealVariable& y);
-        friend  RealVariable& operator+( double x,  RealVariable& y);
-        friend  RealVariable& operator+( RealVariable& x,  double y);
+        friend  RealVariable& operator+(RealVariable& x, RealVariable& y);
+        friend  RealVariable& operator+(double x,RealVariable& y);
+        friend  RealVariable& operator+(RealVariable& x,double y);
         
 
-        friend  RealVariable& operator==( RealVariable& x,  RealVariable& y);
-        friend  RealVariable& operator==( double x,  RealVariable& y);
-        friend  RealVariable& operator==( RealVariable& x,  double y);
+        friend  RealVariable& operator==(RealVariable& x,RealVariable& y);
+        friend  RealVariable& operator==(double x,RealVariable& y);
+        friend  RealVariable& operator==(RealVariable& x,double y);
 
-        friend  RealVariable& operator/( double x,  RealVariable& y);
-        friend  RealVariable& operator/( RealVariable& x,  double y);
+        friend  RealVariable& operator/(double x,RealVariable& y);
+        friend  RealVariable& operator/(RealVariable& x,double y);
 
-        friend  RealVariable& operator^( RealVariable& x,  double y);
+        friend  RealVariable& operator^(RealVariable& x,double y);
 
-        friend ostream& operator<<(ostream& os,  RealVariable& x);
+        friend ostream& operator<<(ostream& os,RealVariable& x);
 
     };
 
@@ -91,40 +91,40 @@ namespace solver{
 
         bool equals(ComplexVariable x);
 
-        friend  ComplexVariable& operator-( ComplexVariable& x,  ComplexVariable& y);
-        friend  ComplexVariable& operator-( double x,  ComplexVariable& y);
-        friend  ComplexVariable& operator-( ComplexVariable& x,  double y);
-        friend  ComplexVariable& operator-( complex<double> x,  ComplexVariable& y);
-        friend  ComplexVariable& operator-( ComplexVariable& x,  complex<double> y);
+        friend  ComplexVariable& operator-(ComplexVariable& x,ComplexVariable& y);
+        friend  ComplexVariable& operator-(double x,ComplexVariable& y);
+        friend  ComplexVariable& operator-(ComplexVariable& x,double y);
+        friend  ComplexVariable& operator-(complex<double> x,ComplexVariable& y);
+        friend  ComplexVariable& operator-(ComplexVariable& x,complex<double> y);
 
 
-        friend  ComplexVariable& operator*( ComplexVariable& x,  ComplexVariable& y);
-        friend  ComplexVariable& operator*( double x,  ComplexVariable& y);
-        friend  ComplexVariable& operator*( ComplexVariable& x, double y);
-        friend  ComplexVariable& operator*( complex<double> x,  ComplexVariable& y);
-        friend  ComplexVariable& operator*( ComplexVariable& x,  complex<double> y);
+        friend  ComplexVariable& operator*(ComplexVariable& x,ComplexVariable& y);
+        friend  ComplexVariable& operator*(double x,ComplexVariable& y);
+        friend  ComplexVariable& operator*(ComplexVariable& x,double y);
+        friend  ComplexVariable& operator*(complex<double> x,ComplexVariable& y);
+        friend  ComplexVariable& operator*(ComplexVariable& x,complex<double> y);
 
-        friend  ComplexVariable& operator+( ComplexVariable& x,  ComplexVariable& y);
-        friend  ComplexVariable& operator+( double x,  ComplexVariable& y);
-        friend  ComplexVariable& operator+( ComplexVariable& x, double y);
-        friend  ComplexVariable& operator+( complex<double> x,  ComplexVariable& y);
-        friend  ComplexVariable& operator+( ComplexVariable& x,  complex<double> y);
+        friend  ComplexVariable& operator+(ComplexVariable& x,ComplexVariable& y);
+        friend  ComplexVariable& operator+(double x,ComplexVariable& y);
+        friend  ComplexVariable& operator+(ComplexVariable& x,double y);
+        friend  ComplexVariable& operator+(complex<double> x,ComplexVariable& y);
+        friend  ComplexVariable& operator+(ComplexVariable& x,complex<double> y);
 
 
-        friend  ComplexVariable& operator==( ComplexVariable& x,  ComplexVariable& y);
-        friend  ComplexVariable& operator==( double x,  ComplexVariable& y);
-        friend  ComplexVariable& operator==( ComplexVariable& x, double y);
-        friend  ComplexVariable& operator==( complex<double> x,  ComplexVariable& y);
-        friend  ComplexVariable& operator==( ComplexVariable& x ,complex<double> y);
+        friend  ComplexVariable& operator==(ComplexVariable& x,ComplexVariable& y);
+        friend  ComplexVariable& operator==(double x,ComplexVariable& y);
+        friend  ComplexVariable& operator==(ComplexVariable& x,double y);
+        friend  ComplexVariable& operator==(complex<double> x,ComplexVariable& y);
+        friend  ComplexVariable& operator==(ComplexVariable& x,complex<double> y);
 
-        friend  ComplexVariable& operator/( double x,  ComplexVariable& y);
-        friend  ComplexVariable& operator/( ComplexVariable& x, double y);
-        friend  ComplexVariable& operator/( complex<double> x,  ComplexVariable& y);
-        friend  ComplexVariable& operator/( ComplexVariable& x,  complex<double> y);
+        friend  ComplexVariable& operator/(double x,ComplexVariable& y);
+        friend  ComplexVariable& operator/(ComplexVariable& x,double y);
+        friend  ComplexVariable& operator/(complex<double> x,ComplexVariable& y);
+        friend  ComplexVariable& operator/(ComplexVariable& x,complex<double> y);
 
-        friend  ComplexVariable& operator^( ComplexVariable& x,  double y);
+        friend  ComplexVariable& operator^(ComplexVariable& x,double y);
 
-        friend ostream& operator<<(ostream& os,  ComplexVariable& x);
+        friend ostream& operator<<(ostream& os,ComplexVariable& x);
 
     };
 

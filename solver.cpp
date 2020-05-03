@@ -15,29 +15,29 @@ using namespace solver;
 
 
 int main(){
-    RealVariable x(0,1,0);
-
-    cout << solve((x^2) + 2*x + 4.0 == 20 + 6.0*x/2 - x) << endl;   // 4 or -4
-    double xvalue = solve(2*x-4.0 == 10.0);   // xvalue == 7
-
-    cout << xvalue << endl;
-
-        RealVariable x;
-        RealVariable y(2,-2,3);
-        RealVariable z(0,0,1);
-        x = (z+2)^2;
-        cout << x.getA() << ", " << x.getB() << " , " << x.getC() << " , Init" << endl;
-
-    try{
-    ComplexVariable x;
-    ComplexVariable y(std::complex<double>(2,2),std::complex<double>(0,1),std::complex<double>(-1,3));
-    ComplexVariable z(0,0,19);
-    x=y*3-5i+3;
-    cout<<"answer:"<<x.getA()<<" "<<x.getB()<<" "<<x.getC()<<endl;
-    }
-    catch(exception& e){
-        cout<<"caught:"<<e.what()<<endl;
-    }
+//    RealVariable x(0,1,0);
+//
+//    cout << solve((x^2) + 2*x + 4.0 == 20 + 6.0*x/2 - x) << endl;   // 4 or -4
+//    double xvalue = solve(2*x-4.0 == 10.0);   // xvalue == 7
+//
+//    cout << xvalue << endl;
+//
+//        RealVariable x;
+//        RealVariable y(2,-2,3);
+//        RealVariable z(0,0,1);
+//        x = (z+2)^2;
+//        cout << x.getA() << ", " << x.getB() << " , " << x.getC() << " , Init" << endl;
+//
+//    try{
+//    ComplexVariable x;
+//    ComplexVariable y(std::complex<double>(2,2),std::complex<double>(0,1),std::complex<double>(-1,3));
+//    ComplexVariable z(0,0,19);
+//    x=y*3-5i+3;
+//    cout<<"answer:"<<x.getA()<<" "<<x.getB()<<" "<<x.getC()<<endl;
+//    }
+//    catch(exception& e){
+//        cout<<"caught:"<<e.what()<<endl;
+//    }
     return 0;
 }
 
@@ -179,7 +179,7 @@ RealVariable& solver::operator==(RealVariable& x,double y){
     return rtemp;
 }
 
-// Operaton Divide "/"
+// Operation Divide "/"
  RealVariable& solver::operator/(double x,RealVariable& y){
     if(y.a == 0 && y.b == 0 && y.c == 0 ){
         throw std::logic_error("Can't divide by Zero\n");
@@ -302,10 +302,14 @@ ComplexVariable& solver::operator-(ComplexVariable& x, const complex<double> y){
 // Operation Multiply "*"
 ComplexVariable& solver::operator*(ComplexVariable& x,ComplexVariable& y){
     if(x.a!=std::complex<double>(0,0)){
-        if(y.a!=std::complex<double>(0,0)||y.b!=std::complex<double>(0,0)) throw std::logic_error("Power cant be more than 2\n");
+        if(y.a!=std::complex<double>(0,0)||y.b!=std::complex<double>(0,0)){
+            throw std::logic_error("Power cant be more than 2\n");
+        }
     }
     if(y.a!=std::complex<double>(0,0)){
-        if(x.a!=std::complex<double>(0,0)||x.b!=std::complex<double>(0,0)) throw std::logic_error("Power cant be more than 2\n");
+        if(x.a!=std::complex<double>(0,0)||x.b!=std::complex<double>(0,0)){
+            throw std::logic_error("Power cant be more than 2\n");
+        }
     }
     ComplexVariable* temp=new ComplexVariable();
     clist.push_back(temp);
@@ -456,7 +460,6 @@ ComplexVariable& solver::operator==(ComplexVariable& x,complex<double> y){
     return ctemp;
 }
 
-
 // Operation Divide "/"
  ComplexVariable& solver::operator/(double x,ComplexVariable& y){
     ComplexVariable* temp=new ComplexVariable();
@@ -512,12 +515,38 @@ ComplexVariable& solver::operator^(ComplexVariable& x,double y){
     if(y>2){
         throw std::logic_error("The Power bigger than 2\n");
     }
-    ComplexVariable* temp=new ComplexVariable(1,0,0);
-    clist.push_back(temp);
-    ComplexVariable& ctemp=*temp;
-    return ctemp;
+    if(y==0){
+        ComplexVariable *temp = new ComplexVariable(0, 0, 1);
+        clist.push_back(temp);
+        ComplexVariable &ctemp = *temp;
+        cout<<"Complex^0:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+        return ctemp;
+    }
+    if(y<0){
+        throw std::logic_error("The Power lower than 0\n");
+    }
+    if(y==1) {
+        ComplexVariable *temp = new ComplexVariable;
+        clist.push_back(temp);
+        ComplexVariable &ctemp = *temp;
+        ctemp.a=x.a;
+        ctemp.b=x.b;
+        ctemp.c=x.c;
+        cout<<"Complex^1:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+        return ctemp;
+    }
+    if(y==2) {
+        ComplexVariable *temp = new ComplexVariable;
+        clist.push_back(temp);
+        ComplexVariable &ctemp = *temp;
+        ctemp=x*x;
+        cout<<"Complex^2:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+        return ctemp;
+    }
+    return x;
 }
 
+// Auxiliary functions:
 bool ComplexVariable::equals(ComplexVariable x){
     if((this->getA().imag()!=x.getA().imag())||(this->getA().real()!=x.getA().real())){
         return false;
@@ -530,14 +559,21 @@ bool ComplexVariable::equals(ComplexVariable x){
     }
     return true;  
 }
-
 bool RealVariable::equals(RealVariable x){
     if((this->getA()!=x.getA())||(this->getB()!=x.getB())||(this->getC()!=x.getC())){
         return false;
     }
     return true;  
 }
- 
+
+// OutStream functions:
+ostream& operator<<(ostream& os,ComplexVariable& x){
+    return (os << x.getA() << x.getB() << x.getC() << '+' << 'i');
+}
+ostream& operator<<(ostream& os,RealVariable& x){
+    return (os << x.getA() << x.getB() << x.getC());
+}
+
 // Solve Functios:
 double solver::solve(RealVariable& a){
     if(a.getA()==0){
@@ -550,7 +586,7 @@ double solver::solve(RealVariable& a){
     double res = ((-a.getB())+sqrtl(sqrt))/(2*a.getA());
     return res;
 }
-
 complex<double> solver::solve(ComplexVariable& a){
+
     return 0;
 }
