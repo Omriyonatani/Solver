@@ -14,36 +14,6 @@ using namespace std;
 using namespace solver;
 
 
-// int main(){
-//    ComplexVariable x;
-
-// //    cout << solve((x^2) + 2*x + 4.0 == 20 + 6.0*x/2 - x) << endl;   // 4 or -4
-//    complex<double> s = solve((x^2)*9==-144);   // xvalue == 7
-
-//    cout << s << endl;
-    
-//     catch(exception& e){
-//         cout<<"caught:"<<e.what()<<endl;
-//     }
-
-//        RealVariable y(2,-2,3);
-//        RealVariable z(0,0,1);
-//        x = (z+2)^2;
-//        cout << x.getA() << ", " << x.getB() << " , " << x.getC() << " , Init" << endl;
-
-//    try{
-//    ComplexVariable x;
-//    ComplexVariable y(std::complex<double>(2,2),std::complex<double>(0,1),std::complex<double>(-1,3));
-//    ComplexVariable z(0,0,19);
-//    x=y*3-5i+3;
-//    cout<<"answer:"<<x.getA()<<" "<<x.getB()<<" "<<x.getC()<<endl;
-//    }
-//    catch(exception& e){
-//        cout<<"caught:"<<e.what()<<endl;
-//    }
-//     return 0;
-// }
-
 std::vector<RealVariable*> rlist;
 std::vector<ComplexVariable*> clist;
 
@@ -57,7 +27,7 @@ RealVariable& solver::operator-(RealVariable& x,RealVariable& y){
     rtemp.a=x.a-y.a;
     rtemp.b=x.b-y.b;
     rtemp.c=x.c-y.c;
-    cout<<"Real-Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+    // cout<<"Real-Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
     return rtemp;
 }
 RealVariable& solver::operator-(double x,RealVariable& y){
@@ -67,7 +37,7 @@ RealVariable& solver::operator-(double x,RealVariable& y){
     rtemp.a=-y.a;
     rtemp.b=-y.b;
     rtemp.c=x-y.c;
-    cout<<"Double-Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+    // cout<<"Double-Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
     return rtemp;
 }
 RealVariable& solver::operator-(RealVariable& x,double y){
@@ -77,7 +47,7 @@ RealVariable& solver::operator-(RealVariable& x,double y){
     rtemp.a=x.a;
     rtemp.b=x.b;
     rtemp.c=x.c-y;
-    cout<<"Real-Double:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+    // cout<<"Real-Double:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
     return rtemp;
 
 }
@@ -96,7 +66,7 @@ RealVariable& solver::operator*(RealVariable& x,RealVariable& y){
     rtemp.a=x.a*y.c+y.a*x.c+x.b*y.b;
     rtemp.b=x.b*y.c+y.b*x.c;
     rtemp.c=x.c*y.c;
-    cout<<"Real*Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+    // cout<<"Real*Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
     return rtemp;
 
 
@@ -108,7 +78,7 @@ RealVariable& solver::operator*(double x,RealVariable& y){
     rtemp.a=x*y.a;
     rtemp.b=x*y.b;
     rtemp.c=x*y.c;
-    cout<<"Double*Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+    // cout<<"Double*Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
     return rtemp;
 }
 RealVariable& solver::operator*(RealVariable& x,double y){
@@ -118,7 +88,7 @@ RealVariable& solver::operator*(RealVariable& x,double y){
     rtemp.a=y*x.a;
     rtemp.b=y*x.b;
     rtemp.c=y*x.c;
-    cout<<"Real*Double:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+    // cout<<"Real*Double:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
     return rtemp;
 }
 
@@ -130,7 +100,7 @@ RealVariable& solver::operator+(RealVariable& x,RealVariable& y){
     rtemp.a=y.a+x.a;
     rtemp.b=y.b+x.b;
     rtemp.c=y.c+x.c;
-    cout<<"Real+Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+    // cout<<"Real+Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
     return rtemp;
 }
 RealVariable& solver::operator+(double x,RealVariable& y){
@@ -140,7 +110,7 @@ RealVariable& solver::operator+(double x,RealVariable& y){
     rtemp.a=y.a;
     rtemp.b=y.b;
     rtemp.c=y.c+x;
-    cout<<"double+Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+    // cout<<"double+Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
     return rtemp;
 }
 RealVariable& solver::operator+(RealVariable& x,double y){
@@ -150,7 +120,7 @@ RealVariable& solver::operator+(RealVariable& x,double y){
     rtemp.a=x.a;
     rtemp.b=x.b;
     rtemp.c=x.c+y;
-    cout<<"Real+Double:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+    // cout<<"Real+Double:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
     return rtemp;
 }
 
@@ -184,19 +154,6 @@ RealVariable& solver::operator==(RealVariable& x,double y){
 }
 
 // Operation Divide "/"
-//  RealVariable& solver::operator/(double x,RealVariable& y){
-//     if(y.a == 0 && y.b == 0 && y.c == 0 ){
-//         throw std::logic_error("Can't divide by Zero\n");
-//     }
-//     RealVariable* temp=new RealVariable();
-//     rlist.push_back(temp);
-//     RealVariable& rtemp=*temp;
-//     rtemp.a = x/y.a;
-//     rtemp.b = x/y.b;
-//     rtemp.c = x/y.c;
-//     cout<<"Double/Real:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
-//     return rtemp;
-// }
  RealVariable& solver::operator/(RealVariable& x,double y){
     if( y == 0){
         throw std::logic_error("Can't divide by Zero\n");
@@ -207,7 +164,7 @@ RealVariable& solver::operator==(RealVariable& x,double y){
     rtemp.a = x.a/y;
     rtemp.b = x.b/y;
     rtemp.c = x.c/y;
-     cout<<"Real/Double:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+    //  cout<<"Real/Double:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
     return rtemp;
 }
 
@@ -220,7 +177,7 @@ RealVariable& solver::operator^(RealVariable& x,double y){
         RealVariable *temp = new RealVariable(0, 0, 1);
         rlist.push_back(temp);
         RealVariable &rtemp = *temp;
-        cout<<"Real^0:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+        // cout<<"Real^0:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
         return rtemp;
     }
     if(y<0){
@@ -233,7 +190,7 @@ RealVariable& solver::operator^(RealVariable& x,double y){
         rtemp.a=x.a;
         rtemp.b=x.b;
         rtemp.c=x.c;
-        cout<<"Real^1:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+        // cout<<"Real^1:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
         return rtemp;
     }
     if(y==2) {
@@ -241,7 +198,7 @@ RealVariable& solver::operator^(RealVariable& x,double y){
         rlist.push_back(temp);
         RealVariable &rtemp = *temp;
         rtemp=x*x;
-        cout<<"Real^2:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
+        // cout<<"Real^2:"<<rtemp.getA()<<" "<<rtemp.getB()<<" "<<rtemp.getC()<<endl;
         return rtemp;
     }
     return x;
@@ -259,7 +216,7 @@ ComplexVariable& solver::operator-(ComplexVariable& x,ComplexVariable& y){
     ctemp.a=x.a-y.a;
     ctemp.b=x.b-y.b;
     ctemp.c=x.c-y.c;
-    cout<<"Complex-Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+    // cout<<"Complex-Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
     return ctemp;
 }
 ComplexVariable& solver::operator-(const double x,ComplexVariable& y){
@@ -269,7 +226,7 @@ ComplexVariable& solver::operator-(const double x,ComplexVariable& y){
     ctemp.a=-y.a;
     ctemp.b=-y.b;
     ctemp.c=x-y.c;
-    cout<<"Double-Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+    // cout<<"Double-Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
     return ctemp;
 }
 ComplexVariable& solver::operator-(ComplexVariable& x, double y){
@@ -279,7 +236,7 @@ ComplexVariable& solver::operator-(ComplexVariable& x, double y){
     ctemp.a=x.a;
     ctemp.b=x.b;
     ctemp.c=x.c-y;
-    cout<<"Complex-Double:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+    // cout<<"Complex-Double:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
     return ctemp;
 }
 ComplexVariable& solver::operator-(const complex<double> x,ComplexVariable& y){
@@ -289,7 +246,7 @@ ComplexVariable& solver::operator-(const complex<double> x,ComplexVariable& y){
     ctemp.a=-y.a;
     ctemp.b=-y.b;
     ctemp.c=x-y.c;
-    cout<<"std::complex-Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+    // cout<<"std::complex-Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
     return ctemp;
 }
 ComplexVariable& solver::operator-(ComplexVariable& x, const complex<double> y){
@@ -299,7 +256,7 @@ ComplexVariable& solver::operator-(ComplexVariable& x, const complex<double> y){
     ctemp.a=x.a;
     ctemp.b=x.b;
     ctemp.c=x.c-y;
-    cout<<"Complex-std::complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+    // cout<<"Complex-std::complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
     return ctemp;
 }
 
@@ -321,7 +278,7 @@ ComplexVariable& solver::operator*(ComplexVariable& x,ComplexVariable& y){
     ctemp.a=x.a*y.c+y.a*x.c+x.b*y.b;
     ctemp.b=x.b*y.c+y.b*x.c;
     ctemp.c=x.c*y.c;
-    cout<<"Complex*Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+    // cout<<"Complex*Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
     return ctemp;
 }
 ComplexVariable& solver::operator*(double x,ComplexVariable& y){
@@ -331,7 +288,7 @@ ComplexVariable& solver::operator*(double x,ComplexVariable& y){
     ctemp.a=y.a*x;
     ctemp.b=y.b*x;
     ctemp.c=y.c*x;
-    cout<<"Double*Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+    // cout<<"Double*Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
     return ctemp;
 }
 ComplexVariable& solver::operator*(ComplexVariable& x,double y){
@@ -341,7 +298,7 @@ ComplexVariable& solver::operator*(ComplexVariable& x,double y){
     ctemp.a=x.a*y;
     ctemp.b=x.b*y;
     ctemp.c=x.c*y;
-    cout<<"Complex*Double:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+    // cout<<"Complex*Double:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
     return ctemp;
 }
 ComplexVariable& solver::operator*(complex<double> x,ComplexVariable& y){
@@ -351,7 +308,7 @@ ComplexVariable& solver::operator*(complex<double> x,ComplexVariable& y){
     ctemp.a=y.a*x;
     ctemp.b=y.b*x;
     ctemp.c=y.c*x;
-    cout<<"std::complex*Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+    // cout<<"std::complex*Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
     return ctemp;
 }
 ComplexVariable& solver::operator*(ComplexVariable& x,complex<double> y){
@@ -361,7 +318,7 @@ ComplexVariable& solver::operator*(ComplexVariable& x,complex<double> y){
     ctemp.a=x.a*y;
     ctemp.b=x.b*y;
     ctemp.c=x.c*y;
-    cout<<"Complex*std::complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+    // cout<<"Complex*std::complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
     return ctemp;
 }
 
@@ -373,7 +330,7 @@ ComplexVariable& solver::operator+(ComplexVariable& x,ComplexVariable& y){
     ctemp.a=x.a+y.a;
     ctemp.b=x.b+y.b;
     ctemp.c=x.c+y.c;
-    cout<<"Complex+Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+    // cout<<"Complex+Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
     return ctemp;
 }
 ComplexVariable& solver::operator+(double x,ComplexVariable& y){
@@ -383,7 +340,7 @@ ComplexVariable& solver::operator+(double x,ComplexVariable& y){
     ctemp.a=y.a;
     ctemp.b=y.b;
     ctemp.c=y.c+x;
-    cout<<"Double+Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+    // cout<<"Double+Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
     return ctemp;
 }
 ComplexVariable& solver::operator+(ComplexVariable& x,double y){
@@ -393,7 +350,7 @@ ComplexVariable& solver::operator+(ComplexVariable& x,double y){
     ctemp.a=x.a;
     ctemp.b=x.b;
     ctemp.c=x.c+y;
-    cout<<"Complex+Double:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+    // cout<<"Complex+Double:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
     return ctemp;
 }
 ComplexVariable& solver::operator+(complex<double> x,ComplexVariable& y){
@@ -403,7 +360,7 @@ ComplexVariable& solver::operator+(complex<double> x,ComplexVariable& y){
     ctemp.a=y.a;
     ctemp.b=y.b;
     ctemp.c=y.c+x;
-    cout<<"std::complex+Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+    // cout<<"std::complex+Complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
     return ctemp;
 }
 ComplexVariable& solver::operator+(ComplexVariable& x,complex<double> y){
@@ -413,7 +370,7 @@ ComplexVariable& solver::operator+(ComplexVariable& x,complex<double> y){
     ctemp.a=x.a;
     ctemp.b=x.b;
     ctemp.c=x.c+y;
-    cout<<"Complex+std::complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+    // cout<<"Complex+std::complex:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
     return ctemp;
 }
 
@@ -464,19 +421,6 @@ ComplexVariable& solver::operator==(ComplexVariable& x,complex<double> y){
     return ctemp;
 }
 
-// Operation Divide "/"
-//  ComplexVariable& solver::operator/(double x,ComplexVariable& y){
-//     ComplexVariable* temp=new ComplexVariable();
-//     clist.push_back(temp);
-//     ComplexVariable& ctemp=*temp;
-//     if(y.equals(ComplexVariable(0,0,0))){
-//         throw std::logic_error("Zero Divide Error\n");
-//     }
-//      ctemp.a = x/y.a;
-//      ctemp.b = x/y.b;
-//      ctemp.c = x/y.c;
-//     return ctemp;
-// }
  ComplexVariable& solver::operator/(ComplexVariable& x,double y){
     ComplexVariable* temp=new ComplexVariable();
     clist.push_back(temp);
@@ -489,18 +433,7 @@ ComplexVariable& solver::operator==(ComplexVariable& x,complex<double> y){
      ctemp.c = x.c/y;
     return ctemp;
 }
-//  ComplexVariable& solver::operator/(complex<double> x,ComplexVariable& y){
-//     ComplexVariable* temp=new ComplexVariable();
-//     clist.push_back(temp);
-//     ComplexVariable& ctemp=*temp;
-//     if(y.equals(ComplexVariable(0,0,0))){
-//         throw std::logic_error("Zero Divide Error\n");
-//     }
-//      ctemp.a = x/y.a;
-//      ctemp.b = x/y.b;
-//      ctemp.c = x/y.c;
-//     return ctemp;
-// }
+
  ComplexVariable& solver::operator/(ComplexVariable& x,complex<double> y){
     ComplexVariable* temp=new ComplexVariable();
     clist.push_back(temp);
@@ -523,7 +456,7 @@ ComplexVariable& solver::operator^(ComplexVariable& x,double y){
         ComplexVariable *temp = new ComplexVariable(0, 0, 1);
         clist.push_back(temp);
         ComplexVariable &ctemp = *temp;
-        cout<<"Complex^0:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+        // cout<<"Complex^0:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
         return ctemp;
     }
     if(y<0){
@@ -536,7 +469,7 @@ ComplexVariable& solver::operator^(ComplexVariable& x,double y){
         ctemp.a=x.a;
         ctemp.b=x.b;
         ctemp.c=x.c;
-        cout<<"Complex^1:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+        // cout<<"Complex^1:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
         return ctemp;
     }
     if(y==2) {
@@ -544,7 +477,7 @@ ComplexVariable& solver::operator^(ComplexVariable& x,double y){
         clist.push_back(temp);
         ComplexVariable &ctemp = *temp;
         ctemp=x*x;
-        cout<<"Complex^2:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
+        // cout<<"Complex^2:"<<ctemp.getA()<<" "<<ctemp.getB()<<" "<<ctemp.getC()<<endl;
         return ctemp;
     }
     return x;
