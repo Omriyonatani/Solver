@@ -131,7 +131,6 @@ namespace solver{
     double solve( RealVariable& a);
     complex<double> solve( ComplexVariable& a);
 
-    vector<RealVariable*> rlist;
-    vector<ComplexVariable*> clist;
+
     void freeVariables();
 }
