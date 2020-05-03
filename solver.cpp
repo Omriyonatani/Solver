@@ -15,12 +15,12 @@ using namespace solver;
 
 
 // int main(){
-//    RealVariable x;
+//    ComplexVariable x;
 
-//    cout << solve((x^2) + 2*x + 4.0 == 20 + 6.0*x/2 - x) << endl;   // 4 or -4
-//    double xvalue = solve(2*x-4.0 == 10.0);   // xvalue == 7
+// //    cout << solve((x^2) + 2*x + 4.0 == 20 + 6.0*x/2 - x) << endl;   // 4 or -4
+//    complex<double> s = solve((x^2)*9==-144);   // xvalue == 7
 
-//    cout << xvalue << endl;
+//    cout << s << endl;
     
 //     catch(exception& e){
 //         cout<<"caught:"<<e.what()<<endl;
@@ -625,11 +625,13 @@ complex<double> solver::solve(ComplexVariable& a){
     double sqrt = -(ans.getC().real());
     if(sqrt<0){
         freeVariables();
-        return complex<double>(0,sqrtl(-sqrt));
+        double res = sqrtl(-sqrt/(ans.getA().real()));
+        return complex<double>(0,res);
     }
     else {
         freeVariables();
-        return complex<double>(sqrtl(sqrt),0);
+        double res = sqrtl(sqrt/(ans.getA().real()));
+        return complex<double>(res,0);
     }
     return 0;
 }

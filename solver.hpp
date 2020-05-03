@@ -56,7 +56,7 @@ namespace solver{
         friend  RealVariable& operator==(double x,RealVariable& y);
         friend  RealVariable& operator==(RealVariable& x,double y);
 
-        // friend  RealVariable& operator/(double x,RealVariable& y);
+        friend  RealVariable& operator/(double x,RealVariable& y);
         friend  RealVariable& operator/(RealVariable& x,double y);
 
         friend  RealVariable& operator^(RealVariable& x,double y);
@@ -69,7 +69,7 @@ namespace solver{
         std::complex<double> a,b,c;
     public:
         
-        ComplexVariable():a(complex<double>(0,0)),b(complex<double>(1,0)),c(complex<double>(0,0)){};
+        ComplexVariable():a(complex<double>(0,0)),b(complex<double>(0,0)),c(complex<double>(0,0)){};
 
         ComplexVariable(std::complex<double> a,std::complex<double> b,std::complex<double> c){
             this->a=a;
@@ -117,9 +117,9 @@ namespace solver{
         friend  ComplexVariable& operator==(complex<double> x,ComplexVariable& y);
         friend  ComplexVariable& operator==(ComplexVariable& x,complex<double> y);
 
-        // friend  ComplexVariable& operator/(double x,ComplexVariable& y);
+        friend  ComplexVariable& operator/(double x,ComplexVariable& y);
         friend  ComplexVariable& operator/(ComplexVariable& x,double y);
-        // friend  ComplexVariable& operator/(complex<double> x,ComplexVariable& y);
+        friend  ComplexVariable& operator/(complex<double> x,ComplexVariable& y);
         friend  ComplexVariable& operator/(ComplexVariable& x,complex<double> y);
 
         friend  ComplexVariable& operator^(ComplexVariable& x,double y);
@@ -131,7 +131,7 @@ namespace solver{
     double solve( RealVariable& a);
     complex<double> solve( ComplexVariable& a);
 
-    // vector<RealVariable*> rlist;
-    // vector<ComplexVariable*> clist;
+    vector<RealVariable*> rlist;
+    vector<ComplexVariable*> clist;
     void freeVariables();
 }
